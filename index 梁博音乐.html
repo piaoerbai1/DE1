@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>梁博（出现又离开）</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #292929;
+      height: 100vh;
+      background-image: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202001%2F19%2F20200119100223_TNPXU.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659490563&t=bebf559f8c9d46b0058d84206077b923);
+      background-repeat: no-repeat;
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
+    .center {
+      margin-top: 8px;
+      margin-left: 8px;
+      margin-right: 8px;
+    }
+
+    input[type="checkbox"] {
+      position: relative;
+      width: 120px;
+      height: 40px;
+      -webkit-appearance: none;
+      background: linear-gradient(0deg, rgb(63, 61, 61), #000);
+      outline: none;
+
+      border-radius: 20px;
+      box-shadow: 0 0 0 4px #353535, 0 0 0 5px #3e3e3e,
+        inset 0 0 10px rgba(0, 0, 0, 1), 0 5px 20px rgba(0, 0, 0, 0.5),
+        inset 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+    input[type="checkbox"]::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 80px;
+      height: 40px;
+      background: linear-gradient(0deg, #000, #6b6b6b);
+      border-radius: 20px;
+      box-shadow: 0 0 0 1px#232323;
+      transform: scale(0.98, 0.96);
+      transition: 0.5s;
+    }
+    input:checked[type="checkbox"] {
+      background: linear-gradient(0deg, #6dd1ff, #20b7ff);
+    }
+    input:checked[type="checkbox"]::before {
+      left: 40px;
+    }
+    input[type="checkbox"]::after {
+      content: "";
+      position: absolute;
+      top: calc(50% - 2px);
+      left: 65px;
+      width: 4px;
+      height: 4px;
+      background: linear-gradient(0deg, #6b6b6b, #000);
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px#232323;
+      transform: scale(0.98, 0.96);
+      transition: 0.5s;
+    }
+
+    input:checked[type="checkbox"]::after {
+      background: #63cdff;
+      left: 105px;
+      box-shadow: 0 0 5px #13b3ff, 0 0 5px #13b3ff;
+    }
+    .touXiang {
+      transform: scale(0.98, 0.96);
+      margin-left: 8px;
+      margin-top: 8px;
+      width: 180px;
+      height: 180px;
+      box-shadow: 0 0 0 1px#a89797 0 0 0 5px;
+      background: linear-gradient(0deg, #a37d7d, #000);
+      border-radius: 30%;
+    }
+    .column {
+      flex-direction: column;
+    }
+    .flex {
+      display: flex;
+    }
+    .baiSe {
+      background-color: aliceblue;
+    }
+    .flex1 {
+      flex: 1;
+    }
+    /* * {
+            border: 1px solid #000;
+          } */
+    .gb1 {
+      border-radius: 30px;
+      width: 600px;
+      height: 450px;
+      margin-top: 220px;
+      margin-left: 10px;
+    }
+    .showTime {
+      border: 4px solid #af1f1f;
+      width: 180px;
+      box-shadow: 0 0 5px #1d2e90, 0 0 5px #b4c1c7;
+
+      margin-top: 15px;
+      margin-left: 8px;
+    }
+    .mgt8 {
+      margin-top: 8px;
+    }
+
+    .mgl8 {
+      margin-left: 8px;
+    }
+    .yinYing {
+      box-shadow: 0 0 0 5px rgb(rgb(169, 143, 143), #000, #000);
+    }
+    .mgb8 {
+      margin-bottom: 8px;
+    }
+    .geCi {
+      box-shadow: 0 0 15px 10px #000;
+      width: 180px;
+      height: 80px;
+      margin-top: 50px;
+    }
+    .geCi:hover {
+      transform: scale(1.1);
+      transition: transform 0.3s;
+    }
+    .lrc {
+      height: 480px;
+      color: #888;
+      overflow: hidden;
+      margin-left: 630px;
+      
+    }
+    .lrc ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      margin-left: 300px;
+      transition: 0.3s;
+      
+    }
+    .lrc ul li {
+      height: 35px;
+      line-height: 35px;
+      transition: 0.3s;
+      
+    }
+    .lrc ul li.active {
+      color: #000;
+      font-size: 1.2em;
+      font-weight: bold;
+      
+    }
+  </style>
+  <body class="flex column">
+    <!-- 头部栏 -->
+    <div style="height: 220px" class="flex">
+      <!-- 头像栏 -->
+      <div class="touXiang">
+        <img
+          class="touXiang"
+          src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.doubanio.com%2Fview%2Fgroup_topic%2Fl%2Fpublic%2Fp174221656.jpg&refer=http%3A%2F%2Fimg9.doubanio.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659490687&t=8d940ef2ee6f839840b698aec7fa89f8"
+          alt=""
+        />
+      </div>
+
+      <h1
+        style="
+          width: 50px;
+          height: 220px;
+          margin-left: 33px;
+          margin-top: 15px;
+          font-size: 40px;
+          color: #653b3b;
+        "
+      >
+        世界喧嚣！
+      </h1>
+
+      <!-- 点击键 -->
+      <div class="center">
+        <input id="int" type="checkbox" name="" />
+      </div>
+      <div style="margin-left: 500px" class="flex" id="g1">
+        <img
+          class="flex showTime"
+          src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Flovelone1022%2Fjita4%2Fuploads%2Fallimg%2F200116%2F1-2001162016450-L.jpg&refer=http%3A%2F%2Fcdn.jsdelivr.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659490804&t=ede00130660e7189933c0003519bbe0a"
+          alt=""
+        />
+      </div>
+      <div style="margin-left: 500px; display: none" class="flex" id="g2">
+        <img
+          class="flex geCi"
+          src="https://tukuimg.bdstatic.com/processed/bfa6945f19c32d59bcbd4bd2feaea53b.jpeg@s_0,w_800,h_1000,q_80"
+          alt=""
+        />
+      </div>
+    </div>
+    <div class="flex column" id="g3">
+      <img
+        class="gb1"
+        src="https://img0.baidu.com/it/u=3307105139,3092259025&fm=253&fmt=auto&app=120&f=JPEG?w=1200&h=800"
+        alt=""
+      />
+
+      <video id="music" controls="controls" hidden src="music/1.mp3"></video>
+    </div>
+    <div class="container">
+		
+		<div  class="lrc">
+			<ul id="ullrc"></ul>
+		</div>
+	</div>
+   
+    </div>
+
+    <script>
+      let int = document.getElementById("int");
+
+      let h1 = document.querySelector("h1");
+      let body = document.body;
+      let g3 = document.getElementById("g3");
+      let g1 = document.getElementById("g1");
+      let g2 = document.getElementById("g2");
+      
+      
+     
+
+      int.onclick = function () {
+        var music = document.getElementById("music");
+
+        if (music.paused) {
+          music.play();
+          h1.innerHTML = "选择由我！";
+          body.style.backgroundImage =
+            "url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F201905%2F27%2F20190527224730_tiZUT.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659989956&t=6b3b2275abc3c9ba589ce5c938201c1e)";
+          g3.style.display = "none";
+          g1.style.display = "none";
+          g2.style.display = "block";
+        } else {
+          music.pause();
+          h1.innerText = "世界喧嚣";
+          body.style.backgroundImage =
+            "url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202001%2F19%2F20200119100223_TNPXU.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659490563&t=bebf559f8c9d46b0058d84206077b923)";
+          g3.style.display = "block";
+          g1.style.display = "block";
+          g2.style.display = "none";
+        }
+      };
+      let lrc = `[ar:李冬冬]
+[ti:出现又离开]
+[00:32.55]我和你本应该
+[00:36.55]各自好各自坏
+[00:40.55]各自生活的自在
+[00:44.72]毫无关联的存在
+[00:48.69]直到你出现在
+[00:52.62]我眼中躲不开
+[00:56.68]我也占领你的心海
+[01:00.67]充实着你的空白
+[01:06.92]为何出现在彼此的生活又离开
+[01:14.70]只留下在心里深深浅浅的表白
+[01:22.84]谁也没有想过再更改
+[01:26.73]谁也没有想过再想回来
+[01:30.59]oh~我不明白
+[01:54.82]我跟你不应该
+[01:58.67]制造感觉表达爱
+[02:02.70]试探未知和未来
+[02:06.67]相信那胡言一派
+[02:10.60]当天空暗下来
+[02:14.59]当周围又安静起来
+[02:18.75]当我突然梦里醒来
+[02:22.48]就等着太阳出来
+[02:28.72]为何出现在彼此的生活又离开
+[02:36.78]只留下在心里深深浅浅的表白
+[02:44.76]谁也没有想过再更改
+[02:48.71]谁也没有想过再想回来
+[02:51.58]oh~我不明白
+[03:00.94]我们紧紧相拥 那头也不抬
+[03:08.75]因为不想告别 就悄然离开
+[03:17.00]不用认真的说 多舍不得你
+[03:24.21]每一个未来 都有人在
+[03:33.29]每一个未来 都有人在
+[03:44.06]那里不需感慨 我别徘徊
+[03:52.40]因为谁也没有想过再更改
+[03:56.70]谁也没有想过再想回来
+[04:02.00]oh~我不明白`
+      var ul = document.getElementById("ullrc");
+      function getLrcArray() {
+        var parts = lrc.split("\n");
+        for (var i = 0; i < parts.length; i++) {
+          parts[i] = getLrcObj(parts[i]);
+        }
+        return parts;
+
+        function getLrcObj(content) {
+          var twoParts = content.split("]");
+          var time = twoParts[0].substr(1);
+          var timeParts = time.split(":");
+          var minute = +timeParts[0];
+          var seconds = +timeParts[1];
+          time = minute * 60 + seconds;
+          var words = twoParts[1];
+
+          return {
+            time: time,
+            words: words,
+          };
+        }
+      }
+
+      var lrcArray = getLrcArray();
+
+      //按照歌词的行数(数组长度)批量创建li标签，将li标签插入ul标签下
+      function createLis() {
+        for (var i = 0; i < lrcArray.length; i++) {
+          var li = document.createElement("li");
+          li.innerText = lrcArray[i].words;
+          ul.appendChild(li);
+        }
+      }
+
+      createLis();
+
+      //利用audio标签的currentTime属性拖动时间
+      //比较当前时间和数组中的时间，若当前时间小于数组时间则返回i-1，循环执行此过程，确保能够使时间匹配
+      function getLrcIndex() {
+        var time = music.currentTime;
+        for (var i = 0; i < lrcArray.length; i++) {
+          if (time < lrcArray[i].time) {
+            return i - 1;
+          }
+        }
+      }
+
+      /**
+       * 获取当前数组位置，若当前i=-1则跳出执行，若i不等于-1则向下执行
+       * 歌词顶端的上边距的计算方法为数组下标*行高+行高/2-父级div/2
+       * 通过queryselector方法选择类名为".active"的标签，有则返回字树中的第一个元素，没有则返回null
+       * 通过返回值进行判断，若有则将其置为空，返回值为null则代码向下执行，将对应数组下标的li标签赋予"active"类名
+       * 使用audio的ontimeupdate方法，将setPosition函数进行触发，定义音频当前的播放位置
+       */
+      function setPosition() {
+        var i = getLrcIndex();
+        if (i === -1) {
+          return;
+        }
+        var top = i * 35 + 35 / 2 - 450 / 2;
+        ul.style.marginTop = -top + "px";
+        if (top < 0) {
+          top = 0;
+        }
+        var acLi = ul.querySelector(".active");
+        if (acLi) {
+          acLi.className = "";
+        }
+        ul.children[i].className = "active";
+      }
+
+      music.ontimeupdate = setPosition;
+    </script>
+  </body>
+</html>
